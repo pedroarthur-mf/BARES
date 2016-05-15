@@ -124,28 +124,25 @@ bool Operation::tokenize(std::string line){
   	return true;	
 }
 
-bool Operation::makeposfix(){
+void Operation::makeposfix(){
 	while(!(this->token.isEmpty())){
 		this->e = this->token.dequeue();
 		if (number(this->e.symbol[0])){
-			std::cout << "OK2" << std::endl;
 		 	this->posfix.enqueue(e);
-		 }
+		}
 		else{
-			std::cout << "OK3" << std::endl;
 			element top = this->_symbol.top();
 			if(!(this->_symbol.isEmpty()) and (weight(this->e.symbol)) >= (weight(top.symbol))){
+				if ((weight(this->e.symbol)) >= (weight(top.symbol))){
 					this->posfix.enqueue(this->_symbol.pop());
 				}
 			}
 			this->_symbol.push(this->e);
 		}
 	}
-	while(!this->_symbol.isEmpty()){
+	while(!(this->_symbol.isEmpty())){
 		this->posfix.enqueue(this->_symbol.pop());
 	}
-	std::cout << "OK3" << std::endl;
-return true;
 }
 int Operation::weight(std::string s){
 	if (s == "(" or s == ")") return 1;

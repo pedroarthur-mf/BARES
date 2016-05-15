@@ -33,7 +33,7 @@ class Operation{
  	~Operation();
  	void printtoken ();
  	bool tokenize (std::string);
- 	bool makeposfix ();
+ 	void makeposfix ();
  	
  	/*inline std::ostream &operator<<(std::ostream &_os, const QueueAr &_term) {
     return _os << "\"" << _term.symbol << "\"";

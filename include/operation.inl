@@ -37,7 +37,7 @@ bool Operation::tokenize(std::string line){
 			else if(number(line[count])){
 				this->e.col = count;
 				this->e.symbol = line[count];
-				
+
 				while(number(line[count+1])){
 			  		this->e.symbol += line[count+1];
 			  		count++;
@@ -111,7 +111,7 @@ bool Operation::tokenize(std::string line){
 				std::cerr << "E3 " << count+1 << std::endl;//Extraneous symbol:
 				return false;
 			}
-			token.enqueue(this->e);
+			this->token.enqueue(this->e);
 		}
 		else count++;
 	}
@@ -119,8 +119,7 @@ bool Operation::tokenize(std::string line){
 		std::cerr << "E7 " << parentcol+1 << std::endl;//Missing closing ')' to match opening '(' at
 		return false;
 	}
-	std::cout << "success" << std::endl;
-
+	std::cout << token <<std::endl;
   	return true;	
 }
 
@@ -128,28 +127,29 @@ void Operation::makeposfix(){
 	while(!(this->token.isEmpty())){
 		this->e = this->token.dequeue();
 		if (number(this->e.symbol[0])){
-		 	this->posfix.enqueue(e);
+		 	this->posfix.enqueue(this->e);
 		}
 		else{
 			element top = this->_symbol.top();
-			if(!(this->_symbol.isEmpty()) and (weight(this->e.symbol)) >= (weight(top.symbol))){
+			while(!(this->_symbol.isEmpty()) and (weight(this->e.symbol)) >= (weight(top.symbol))){
 				if ((weight(this->e.symbol)) >= (weight(top.symbol))){
 					this->posfix.enqueue(this->_symbol.pop());
 				}
 			}
 			this->_symbol.push(this->e);
+			std::cout << e.symbol << std::endl;
 		}
 	}
+	std::cout << "ok"<< std:: endl;
 	while(!(this->_symbol.isEmpty())){
 		this->posfix.enqueue(this->_symbol.pop());
 	}
 }
 int Operation::weight(std::string s){
 	if (s == "(" or s == ")") return 1;
-	else if(s == "-") return 2;
-	else if(s == "^") return 3;
-	else if(s == "*" or s == "/" or s[0] == '%') return 4;
-	else if(s == "+") return 5;
+	else if(s == "^") return 2;
+	else if(s == "*" or s == "/" or s[0] == '%') return 3;
+	else if(s == "+" or s == "-") return 4;
 	else return 0;
 }
 bool Operation::expresion(char s){

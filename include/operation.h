@@ -25,13 +25,13 @@ class Operation{
  	bool expresion(char);
  	bool number(char);
  	int changetonumber(std::string);
- 	
+ 	void printtoken ();
 
  public:
 
  	Operation();
  	~Operation();
- 	void printtoken ();
+ 	
  	bool tokenize (std::string);
  	void makeposfix ();
  	

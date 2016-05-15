@@ -35,7 +35,7 @@ void QueueAr<Object>::enqueue ( const Object & x ){
 	else if(this->l == this->size){
 
 	}
-	else if(this->l > 0){
+	else if(this->l > -1){
 		this->l = (this->l+1)%this->size;
 		this->Q[this->l] = x;
 	}
@@ -81,4 +81,7 @@ void QueueAr<Object>::resize(int _size){
 	}
 	this->f *= mult;
 }
-
+template < class Object >
+int QueueAr<Object>::getsize(){
+	return this->l - this->f;
+}

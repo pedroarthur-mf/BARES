@@ -20,14 +20,6 @@ QueueAr<Object>::~QueueAr (){
 }
 template < class Object >
 void QueueAr<Object>::enqueue ( const Object & x ){
-/*	 if ( this->f == -1 )
-            this->f = 0;
-
-    if ( ( this->l + 1 ) % this->size == this->f )
-        this->resize(2*this->size);
-
-    this->l = ( this->l + 1 ) % this->size;
-    this->Q[ this->l ] = x;*/
 
 	int fim = (this->l+1)%this->size;
 	if (this->l == -1)
@@ -88,37 +80,5 @@ void QueueAr<Object>::resize(int _size){
 		this->Q[i*mult] = this->Q[i];
 	}
 	this->f *= mult;
-
-
-
-	/*Object *_newQueue = new Object[ 2 * size];
-
-    /////// Cópia profunda ///////
-    int i = 0;
-
-    for ( int _tempFront = this->f;
-        _tempFront != size and this->l + 1 != _tempFront;
-        i++, _tempFront++ ){
-        _newQueue[ i ] = Q[ _tempFront ];
-        }
-
-        // Para o caso da fila fazer um "loop" em si mesmo
-    if ( this->l < this->f ){
-        int j = 0;
-        for ( ; j <= this->l; j++ )
-            _newQueue[ i + j ] = Q[ j ];
-
-        i += j;
-        }
-
-        this->f = 0;
-        this->l = i - 1;
-        //// Fim da cópia profunda ////
-
-    	delete[] Q;
-
-    	Q = _newQueue;
-
-    	size= 2 * size;*/
 }
 

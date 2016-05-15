@@ -46,7 +46,7 @@ Object StackAr<Object>::top(void) const{
 }
 template <class Object>
 bool StackAr<Object>::isEmpty(void) const{
-	return this->topo == 0;
+	return (this->topo == 0);
 }
 template <class Object>
 void  StackAr<Object>::makeEmpty(void){

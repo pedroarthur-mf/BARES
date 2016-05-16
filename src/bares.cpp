@@ -36,7 +36,7 @@ int main(int argc, char *argv[]){
     	if(P.tokenize(op)){
     		P.makeposfix();
             P.calculation();
-            *out << P.getresult() << "\n";
+            //*out << P.getresult() << "\n";
     	}
     }
     file_data.close();

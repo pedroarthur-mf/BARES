@@ -131,8 +131,8 @@ void Operation::makeposfix(){
 		}
 		else{
 			element top = this->_symbol.top();
-			while(!(this->_symbol.isEmpty()) and (weight(this->e.symbol)) <= (weight(top.symbol))){
-				if ((weight(this->e.symbol)) <= (weight(top.symbol))){
+			while(!(this->_symbol.isEmpty()) and (weight(this->e.symbol)) >= (weight(top.symbol))){
+				if ((weight(this->e.symbol)) >= (weight(top.symbol))){
 					this->posfix.enqueue(this->_symbol.pop());
 				}
 			}

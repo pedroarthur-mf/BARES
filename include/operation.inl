@@ -128,7 +128,6 @@ void Operation::makeposfix(){
 		this->e = this->token.dequeue();
 		if (number(this->e.symbol[0])){
 		 	this->posfix.enqueue(this->e);
-		 	return;
 		}
 		else{
 			element top = this->_symbol.top();

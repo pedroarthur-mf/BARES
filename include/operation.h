@@ -16,9 +16,9 @@ class Operation{
  	QueueAr<element> token;
  	StackAr<element> _symbol;
  	QueueAr<element> posfix;
- 	StackAr<element> calc;
+ 	StackAr<int> calc;
 
- 	int sizetoken;
+ 	int result;
 
  	int weight(std::string);
  	bool term(char);
@@ -34,6 +34,8 @@ class Operation{
  	
  	bool tokenize (std::string);
  	void makeposfix ();
+ 	bool calculation ();
+ 	int getresult();
  	
  	/*inline std::ostream &operator<<(std::ostream &_os, const QueueAr &_term) {
     return _os << "\"" << _term.symbol << "\"";

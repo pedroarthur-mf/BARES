@@ -26,7 +26,7 @@ int main(int argc, char *argv[]){
     while(getline(file_data, op)){
     	Operation P;
     	if(P.tokenize(op)){
-    	//	P.makeposfix();
+    		P.makeposfix();
     	}
     }
 

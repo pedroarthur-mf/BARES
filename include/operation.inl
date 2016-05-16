@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 
 #include "stackar.h"
 #include "queuear.h"
@@ -26,7 +27,6 @@ bool Operation::tokenize(std::string line){
 	int sizeline = line.size();
 	auto dif = 0;
 	auto parentcol = -1;
-	//token.makeEmpty();
 	
 	while(count < sizeline){
 		if (line[count] != 32 and line[count] != 9){
@@ -131,8 +131,8 @@ void Operation::makeposfix(){
 		}
 		else{
 			element top = this->_symbol.top();
-			while(!(this->_symbol.isEmpty()) and (weight(this->e.symbol)) >= (weight(top.symbol))){
-				if ((weight(this->e.symbol)) >= (weight(top.symbol))){
+			while(!(this->_symbol.isEmpty()) and (weight(this->e.symbol)) <= (weight(top.symbol))){
+				if ((weight(this->e.symbol)) <= (weight(top.symbol))){
 					this->posfix.enqueue(this->_symbol.pop());
 				}
 			}
@@ -171,7 +171,7 @@ int Operation::changetonumber(std::string n){
  	int result = 0;
  	int _size = n.size();
 
-    if (n.size()==1){
+    if(n.size()==1){
 		result = n[0] - '0';
 	}
 	else{
@@ -180,4 +180,55 @@ int Operation::changetonumber(std::string n){
 		}
 	}
 	return result;
+}
+bool Operation::calculation (){
+	int op, op1, op2;
+	while(!_symbol.isEmpty()){
+		e = _symbol.pop();
+		if(number(e.symbol[0])){
+			op = changetonumber(e.symbol);
+			calc.push(op);
+		}
+		else if(e.symbol == "+"){
+			op1 = calc.pop();
+			op2 = calc.pop();
+			op = op1 + op2;
+		}
+		else if(e.symbol == "*"){
+			op1 = calc.pop();
+			op2 = calc.pop();
+			op = op1 * op2;
+		}
+		else if(e.symbol == "/"){
+			op1 = calc.pop();
+			op2 = calc.pop();
+			if(op2 != 0)
+				op = op1 / op2;
+			else
+				std::cerr << "E8"<< std::endl; //Numeric overflow error!
+			return false;
+		}
+		else if(e.symbol[0] == '%'){
+			op1 = calc.pop();
+			op2 = calc.pop();
+			op = op1 % op2;
+		}
+		else if(e.symbol == "^"){
+			op1 = calc.pop();
+			op2 = calc.pop();
+			op = pow(op1, op2);
+		}
+	}
+	if (op > -332768 and op < 332768){
+		this->result = op;
+		return true;
+	}
+	else{
+		std::cerr << "E9"<< std::endl; //Numeric overflow error!
+		return false;
+
+	}
+}
+int Operation::getresult(){
+	return this->result;
 }

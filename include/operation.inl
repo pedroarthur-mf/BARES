@@ -16,18 +16,18 @@ Operation::~Operation(){
 	//token (1);
 
 }
-void Operation::printtoken(){
-	this-> e = this->token.getFront();
-	std::cout << "first element: " << this->e.symbol << std::endl;
-	//std::cout << "size : " << this->sizetoken << std::endl;
-}
+// void Operation::printtoken(){
+// 	this-> e = this->token.getFront();
+// 	std::cout << "first element: " << this->e.symbol << std::endl;
+// 	//std::cout << "size : " << this->sizetoken << std::endl;
+// }
 
 bool Operation::tokenize(std::string line){
 	auto count = 0;
 	int sizeline = line.size();
 	auto dif = 0;
 	auto parentcol = -1;
-	
+
 	while(count < sizeline){
 		if (line[count] != 32 and line[count] != 9){
 			if(number(line[count]) and number(e.symbol[0])) {
@@ -61,9 +61,9 @@ bool Operation::tokenize(std::string line){
 					return false;
 				}
 			}
-			else if(line[count] == 43 or line[count] == 47 or line[count] == 42 
+			else if(line[count] == 43 or line[count] == 47 or line[count] == 42
 				or line[count] == 94 or line[count] == 37 or line[count] == 37){ // see if is +, /, *, ^, %
-				
+
 				int i = count+1;
 				for(; (line[i] == 9 or line[i] == 32); i++);
 				if(!(number(e.symbol[0]) or e.symbol[0] == 41)){
@@ -120,7 +120,7 @@ bool Operation::tokenize(std::string line){
 		return false;
 	}
 	std::cout << token <<std::endl;
-  	return true;	
+  	return true;
 }
 
 void Operation::makeposfix(){
@@ -128,6 +128,7 @@ void Operation::makeposfix(){
 		this->e = this->token.dequeue();
 		if (number(this->e.symbol[0])){
 		 	this->posfix.enqueue(this->e);
+		 	return;
 		}
 		else{
 			element top = this->_symbol.top();
@@ -138,6 +139,7 @@ void Operation::makeposfix(){
 			}
 			this->_symbol.push(this->e);
 			std::cout << e.symbol << std::endl;
+			return;
 		}
 	}
 	std::cout << "ok"<< std:: endl;
@@ -153,7 +155,7 @@ int Operation::weight(std::string s){
 	else return 0;
 }
 bool Operation::expresion(char s){
-	if ((number(this->e.symbol[0]) or this->e.symbol[0] == '-' or this->e.symbol[0] == '^' or this->e.symbol[0] == '*' or this->e.symbol[0] == '/' or this->e.symbol[0] == '%' or this->e.symbol[0] == '+') 
+	if ((number(this->e.symbol[0]) or this->e.symbol[0] == '-' or this->e.symbol[0] == '^' or this->e.symbol[0] == '*' or this->e.symbol[0] == '/' or this->e.symbol[0] == '%' or this->e.symbol[0] == '+')
 		and (number(s) or s == '-' or s == '^' or s == '*' or s == '/' or s == '%' or s == '+') and (s != 32 and s != 9) )
 		return true;
 	else return false;

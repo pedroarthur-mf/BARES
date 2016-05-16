@@ -31,12 +31,12 @@ class Operation{
 
  	Operation();
  	~Operation();
- 	
+
  	bool tokenize (std::string);
  	void makeposfix ();
  	bool calculation ();
  	int getresult();
- 	
+
  	/*inline std::ostream &operator<<(std::ostream &_os, const QueueAr &_term) {
     return _os << "\"" << _term.symbol << "\"";
 	}*/

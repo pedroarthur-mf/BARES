@@ -10,7 +10,7 @@ int main(int argc, char *argv[]){
 		exit(1);
 	}
 	else
-		arq = argv[1]; 
+		arq = argv[1];
 
 	//open file
 	std::ifstream file_data(arq);

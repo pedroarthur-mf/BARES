@@ -19,7 +19,7 @@ class QueueAr : public AbsQueue <Object> {
 		void resize(int _size);
 
 	public:
-		QueueAr ( int _size = 50);// Default constructor
+		QueueAr ( int _size = 20);// Default constructor
 	    ~QueueAr ();		  // Default destructor
 
 	 // Basic members
@@ -30,8 +30,7 @@ class QueueAr : public AbsQueue <Object> {
 
 	    bool isEmpty ( ) const;
 	    void makeEmpty ( );
-	    //inline int getsize(){return this->size;}
-	    //inline int getf(){return this->f;}
+
 	    
 	    inline friend std::ostream &operator<< (std::ostream& _os, const QueueAr<Object>& _oList ){
         	if ( _oList.l == -1 ) { _os << "[ ]"; return _os; } // olocar erro.

@@ -138,14 +138,13 @@ void Operation::makeposfix(){
 				}
 			}
 			this->_symbol.push(this->e);
-			std::cout << e.symbol << std::endl;
-			return;
 		}
 	}
-	std::cout << "ok"<< std:: endl;
 	while(!(this->_symbol.isEmpty())){
 		this->posfix.enqueue(this->_symbol.pop());
 	}
+
+	std::cout << "posfix: "<< posfix << std::endl;
 }
 int Operation::weight(std::string s){
 	if (s == "(" or s == ")") return 1;

@@ -142,7 +142,7 @@ void Operation::makeposfix(){
 	while(!(this->_symbol.isEmpty())){
 		this->posfix.enqueue(this->_symbol.pop());
 	}
-
+	// output << "posfix: "<< posfix << std::endl;
 	std::cout << "posfix: "<< posfix << std::endl;
 }
 int Operation::weight(std::string s){

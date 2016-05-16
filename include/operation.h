@@ -17,7 +17,6 @@ class Operation{
  	StackAr<element> _symbol;
  	QueueAr<element> posfix;
  	StackAr<int> calc;
-
  	int result;
 
  	int weight(std::string);

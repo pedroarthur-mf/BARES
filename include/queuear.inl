@@ -46,7 +46,12 @@ Object QueueAr<Object>::dequeue ( ){
         throw std::out_of_range("[dequeue()]: The Queue is empty!");
 	
 	Object result= this->Q[this->f];
-	this->f = (this->f+1)%this->size;
+	 if (this->f == this->l){
+            this->f = -1;
+            this->l = -1;
+        }else{
+			this->f = (this->f+1)%this->size;
+        }
 	return result;
 }
 template < class Object >

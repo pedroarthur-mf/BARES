@@ -5,8 +5,8 @@
 
 int main(int argc, char *argv[]){
 	std::string arq;
-    std::ofstream out_data;
-    std::ostream *out;
+    // std::ofstream out_data;
+    // std::ostream *out;
 
     if (argc == 1){
         std::cerr << "No file specified. Can't run the program\n\n";
@@ -14,14 +14,13 @@ int main(int argc, char *argv[]){
     }
     else {
         arq = argv[1];
-        if(argc == 2){
-            out = &std::cout;
-        } else{
-            out_data.open("data/" + std::string(argv[2]) + ".txt");
-            out = &out_data;
-        }
+        // if(argc == 2){
+        //     // out = &std::cout;
+        // } else{
+        //     out_data.open("data/" + std::string(argv[2]) + ".txt");
+        //     out = &out_data;
+        // }
     }
-    std::cout << out << endl;
     //open file
     std::ifstream file_data(arq);
     if(!file_data){
@@ -36,10 +35,14 @@ int main(int argc, char *argv[]){
     	if(P.tokenize(op)){
     		P.makeposfix();
             P.calculation();
+<<<<<<< HEAD
             //*out << P.getresult() << "\n";
+=======
+            // *out << P.getresult() << "\n";
+>>>>>>> 0e0818ce200d833a76dd8cebca96157529463b2f
     	}
     }
     file_data.close();
-    out_data.close();
+    // out_data.close();
 	return EXIT_SUCCESS;
 }

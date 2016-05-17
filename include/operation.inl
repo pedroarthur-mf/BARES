@@ -133,7 +133,6 @@ void Operation::makeposfix(){
 			if(e.symbol == ")"){
 				while(this->_symbol.top().symbol != "("){
 					this->posfix.enqueue(this->_symbol.pop());
-					std::cout << "posfix: "<< posfix << std::endl;
 				}
 				if(this->_symbol.top().symbol == "(")
 				this->_symbol.pop();

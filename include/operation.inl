@@ -7,12 +7,14 @@
 Operation::Operation(){
 	this->e.symbol = " ";
 	this->e.col = -1;
+	result = 0;
 	//token (1);
 
 }
 Operation::~Operation(){
 	this->e.symbol = " ";
 	this->e.col = 0;
+	result = 0;
 	//token (1);
 
 }
@@ -155,7 +157,7 @@ void Operation::makeposfix(){
 		this->posfix.enqueue(this->_symbol.pop());
 	}
 	// output << "posfix: "<< posfix << std::endl;
-	std::cout << "posfix: "<< posfix << std::endl;
+	
 }
 int Operation::weight(std::string s){
 	if(s == "^") return 2;
@@ -183,7 +185,7 @@ int Operation::changetonumber(std::string n){
  	int result = 0;
  	int _size = n.size();
 
-    if(n.size()==1){
+    if(_size == 1){
 		result = n[0] - '0';
 	}
 	else{
@@ -195,40 +197,41 @@ int Operation::changetonumber(std::string n){
 }
 bool Operation::calculation (){
 	int op, op1, op2;
-	while(!_symbol.isEmpty()){
-		e = _symbol.pop();
+	op = op1 = op2 = 0;
+	while(!(this->posfix.isEmpty())){
+		this->e = this->posfix.dequeue();
+		//	std::cout << e.symbol <<std::endl;
+		
 		if(number(e.symbol[0])){
 			op = changetonumber(e.symbol);
 			calc.push(op);
 		}
-		else if(e.symbol == "+"){
+		else if(!calc.isEmpty()) {
 			op1 = calc.pop();
 			op2 = calc.pop();
-			op = op1 + op2;
-		}
-		else if(e.symbol == "*"){
-			op1 = calc.pop();
-			op2 = calc.pop();
-			op = op1 * op2;
-		}
-		else if(e.symbol == "/"){
-			op1 = calc.pop();
-			op2 = calc.pop();
-			if(op2 != 0)
-				op = op1 / op2;
-			else
-				std::cerr << "E8"<< std::endl; //Numeric overflow error!
-			return false;
-		}
-		else if(e.symbol[0] == '%'){
-			op1 = calc.pop();
-			op2 = calc.pop();
-			op = op1 % op2;
-		}
-		else if(e.symbol == "^"){
-			op1 = calc.pop();
-			op2 = calc.pop();
-			op = pow(op1, op2);
+			 if(e.symbol == "+"){
+				op = op2 + op1;
+			}
+			else if (e.symbol == "-"){
+				op = op2 - op1;
+			}
+			else if(e.symbol == "*"){
+				op = op2 * op1;
+			}
+			else if(e.symbol == "/"){
+				if(op1 != 0)
+					op = op2 / op1;
+				else
+					std::cerr << "E8"<< std::endl; //Numeric overflow error!
+				return false;
+			}
+			else if(e.symbol[0] == '%'){
+				op = op2 % op1;
+			}
+			else if(e.symbol == "^"){
+				op = pow(op2, op1);
+			}
+			std::cout << op << std::endl;
 		}
 	}
 	if (op > -332768 and op < 332768){

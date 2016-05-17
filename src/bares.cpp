@@ -35,6 +35,7 @@ int main(int argc, char *argv[]){
     	if(P.tokenize(op)){
     		P.makeposfix();
             P.calculation();
+            std::cout << P.getresult() << std::endl;
 //<<<<<<< HEAD
 //<<<<<<< HEAD
             //*out << P.getresult() << "\n";

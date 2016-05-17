@@ -133,9 +133,7 @@ void Operation::makeposfix(){
 			if(e.symbol == ")"){
 				while(this->_symbol.top().symbol != "("){
 					this->posfix.enqueue(this->_symbol.pop());
-				std::cout << "posfix: "<< posfix << std::endl;
 				}
-				if(this->_symbol.top().symbol == "(")
 				this->_symbol.pop();
 			}
 			else if (this->e.symbol == "(" or this->_symbol.top().symbol == "(")
@@ -163,7 +161,7 @@ int Operation::weight(std::string s){
 	if(s == "^") return 2;
 	else if(s == "*" or s == "/" or s[0] == '%') return 3;
 	else if(s == "+" or s == "-") return 4;
-	//else if (s == "(") return 5;
+	else if (s == "(") return 5;
 	else return 0;
 }
 bool Operation::expresion(char s){

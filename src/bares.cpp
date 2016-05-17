@@ -35,11 +35,11 @@ int main(int argc, char *argv[]){
     	if(P.tokenize(op)){
     		P.makeposfix();
             P.calculation();
-<<<<<<< HEAD
+//<<<<<<< HEAD
             //*out << P.getresult() << "\n";
-=======
+//=======
             // *out << P.getresult() << "\n";
->>>>>>> 0e0818ce200d833a76dd8cebca96157529463b2f
+//>>>>>>> 0e0818ce200d833a76dd8cebca96157529463b2f
     	}
     }
     file_data.close();

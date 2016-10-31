@@ -1,7 +1,7 @@
 # BARES
 
 ## Author
-This program was developed by **Pedro Arthur & Johnnylee Bryan**
+This program was developed by **Pedro Arthur & Johnnylee Bryan & Pedro Neto**
  - Github - https://github.com/pedroarthur-mf & https://github.com/kfjohnny2
 
 ## About
